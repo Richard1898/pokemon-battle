@@ -36,16 +36,37 @@ while True:
     choice = input("Enter your choice (1-5): ")
 
     if choice == '1':
-        # https://www.w3schools.com/python/python_dictionaries_access.asp
+        x = input("Ieraksti ciparu: ")
+        print(pokemons[int(x)])
         pass
     elif choice == '2':
-        # https://www.w3schools.com/python/python_lists_sort.asp
-        pass
+        def attack(n):
+            return int(n["attack"])
+        pokemons.sort(key = attack, reverse=True)
+        print(pokemons[:10])
     elif choice == '3':
-        # https://www.w3schools.com/python/python_lists_sort.asp
+        def attack(n):
+            return int(n["attack"])
+        pokemons.sort(key = attack, reverse=False)
+        print(pokemons[:10])
         pass
     elif choice == '4':
         # Battle
+        pok1 = random.choice(pokemons)
+        x = int(input("Ieraksti ciparu: "))
+        f = random.randint(5,20)
+        pok2 = pokemons[x]
+        print(pok1["name"], " ", pok2["name"])
+        while pok1["total"] > 0 and pok2["total"] > 0:
+            damage1 = pok2["attack"] - pok1["defense"] + f
+            damage2 = pok1["attack"] - pok2["defense"] + f
+            pok1["total"] = pok1["total"] - damage1
+            pok2["total"] = pok2["total"] - damage2
+            if pok1["total"] <= 0:
+                print (pok1["name"])
+            elif pok2["total"] <= 0:
+                print (pok2["name"])
+        
         # https://www.w3schools.com/python/ref_random_choice.asp - random choice
         # Computer choosing one random Pokemon from list
         # Player choosing by entering Pokemon index
